@@ -29,7 +29,6 @@ Eigen::MatrixXd filter_SOS(Eigen::MatrixXd signal, int sampling_rate){
         std::cerr << "Wrong parameters" << std::endl;
         return;
     }
-    fimpulse = fopen("ellip.dat", "wt");
   double filter_signal[length];  //创建过滤后的信号array
   double* signal_array= signal.data();
     
@@ -38,9 +37,7 @@ Eigen::MatrixXd filter_SOS(Eigen::MatrixXd signal, int sampling_rate){
 	{
 		filter_signal[i] = cust.filter(signal_array[i]);
     
-		fprintf(fimpulse, "%e\n", filter_signal[i]);
 	}
-	fclose(fimpulse);
   
   Eigen::Map<Eigen::MatrixXd> res(filter_signal,1,length) //从array还原回MatrixXd
 
